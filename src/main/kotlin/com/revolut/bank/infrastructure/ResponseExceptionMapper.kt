@@ -6,7 +6,7 @@ import javax.ws.rs.ext.ExceptionMapper
 import javax.ws.rs.ext.Provider
 
 @Provider
-class GreetingExceptionMapper : ExceptionMapper<MoneyTransferException> {
+class ResponseExceptionMapper : ExceptionMapper<MoneyTransferException> {
     override fun toResponse(exception: MoneyTransferException): Response {
         return Response.status(Response.Status.CONFLICT)
                 .header("Conflict-Reason", exception.message)
