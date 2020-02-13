@@ -30,4 +30,7 @@ Either running `bankaccount-1.0-SNAPSHOT-runner.jar` or after executing `./mvnw 
 http://0.0.0.0:8080/swagger-ui/
 ```
 You can use `POST` endpoints in order to create either accounts or money transfers. 
-As this has been tackle by in a non-blocking way, you should access to `GET` endpoints in order to check final status.
+As this has been tackle by in a non-blocking way (fire and forget), you should access to `GET` endpoints in order to check final status.
+
+You can test all endpoints by using with the above mentioned `http://0.0.0.0:8080/swagger-ui/`
+

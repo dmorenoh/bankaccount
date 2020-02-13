@@ -8,7 +8,7 @@ import javax.ws.rs.ext.Provider
 @Provider
 class ResponseExceptionMapper : ExceptionMapper<MoneyTransferException> {
     override fun toResponse(exception: MoneyTransferException): Response {
-        return Response.status(Response.Status.CONFLICT)
+        return Response.status(Response.Status.NOT_FOUND)
                 .header("Conflict-Reason", exception.message)
                 .build()
     }

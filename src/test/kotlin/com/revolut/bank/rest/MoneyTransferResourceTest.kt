@@ -82,7 +82,7 @@ class MoneyTransferResourceTest {
                         "        \"amount\":100.00\n" +
                         "}")
                 .`when`().post("/moneyTransfer")
-                .then().statusCode(409)
+                .then().statusCode(404)
     }
 
     @Test
