@@ -1,0 +1,122 @@
+---
+openapi: 3.0.1
+info:
+  title: Revolut Bank API
+  version: "1.0"
+paths:
+  /account:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRequest'
+      responses:
+        204:
+          description: Created
+  /moneyTransfer:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MoneyTransferRequest'
+      responses:
+        204:
+          description: Created
+  /account/all:
+    get:
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAccount'
+  /moneyTransfer/all:
+    get:
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListMoneyTransfer'
+components:
+  schemas:
+    BigDecimal:
+      type: number
+    AccountRequest:
+      type: object
+      properties:
+        accountNumber:
+          type: string
+        initialBalance:
+          $ref: '#/components/schemas/BigDecimal'
+    MoneyTransferRequest:
+      type: object
+      properties:
+        amount:
+          $ref: '#/components/schemas/BigDecimal'
+        sourceAccountNumber:
+          type: string
+        targetAccountNumber:
+          type: string
+    Account:
+      type: object
+      properties:
+        accountNumber:
+          $ref: '#/components/schemas/AccountNumber'
+        balance:
+          $ref: '#/components/schemas/Money'
+    ListAccount:
+      $ref: '#/components/schemas/ListAccount'
+    AccountNumber:
+      type: object
+      properties:
+        value:
+          type: string
+    Money:
+      type: object
+      properties:
+        currency:
+          $ref: '#/components/schemas/Currency'
+        value:
+          $ref: '#/components/schemas/BigDecimal'
+    Currency:
+      type: object
+      properties:
+        currencyCode:
+          type: string
+        displayName:
+          type: string
+        numericCodeAsString:
+          type: string
+        symbol:
+          type: string
+    MoneyTransfer:
+      type: object
+      properties:
+        amount:
+          $ref: '#/components/schemas/Money'
+        from:
+          $ref: '#/components/schemas/Account'
+        status:
+          $ref: '#/components/schemas/MoneyTransferStatus'
+        to:
+          $ref: '#/components/schemas/Account'
+        transferId:
+          $ref: '#/components/schemas/UUID'
+    ListMoneyTransfer:
+      $ref: '#/components/schemas/ListMoneyTransfer'
+    MoneyTransferStatus:
+      enum:
+        - CANCELED
+        - COMPLETED
+        - IN_PROGRESS
+        - REQUESTED
+      type: string
+    UUID:
+      format: uuid
+      pattern: '[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
+      type: string
