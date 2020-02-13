@@ -24,8 +24,8 @@ class MoneyTransferResourceTest {
 
     @Before
     fun setup() {
-        InMemoryAccountRepository.accounts = HashMap()
-        InMemoryMoneyTransferRepository.moneyTransfers = HashMap()
+        InMemoryAccountRepository.accounts.clear()
+        InMemoryMoneyTransferRepository.moneyTransfers.clear()
     }
 
     @Test
@@ -77,8 +77,8 @@ class MoneyTransferResourceTest {
         given()
                 .contentType(ContentType.JSON)
                 .body("{\n" +
-                        "        \"targetAccountNumber\":\"$TARGET_ACCOUNT_NUMBER\",\n" +
-                        "        \"sourceAccountNumber\":\"$SOURCE_ACCOUNT_NUMBER\",\n" +
+                        "        \"targetAccountNumber\":\"111\",\n" +
+                        "        \"sourceAccountNumber\":\"222\",\n" +
                         "        \"amount\":100.00\n" +
                         "}")
                 .`when`().post("/moneyTransfer")

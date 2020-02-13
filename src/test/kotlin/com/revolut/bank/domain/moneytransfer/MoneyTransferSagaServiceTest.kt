@@ -2,15 +2,16 @@ package com.revolut.bank.domain.moneytransfer
 
 import com.revolut.bank.domain.account.Account
 import com.revolut.bank.domain.account.AccountNumber
-import com.revolut.common.values.Money
 import com.revolut.bank.infrastructure.repository.InMemoryAccountRepository
 import com.revolut.bank.infrastructure.repository.InMemoryMoneyTransferRepository
+import com.revolut.common.values.Money
 import io.quarkus.test.junit.QuarkusTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.jupiter.api.Test
 import java.math.BigDecimal
 import java.util.*
+import javax.enterprise.inject.Default
 import javax.inject.Inject
 
 const val ACCOUNT_NUMBER_1 = "1111"
@@ -20,6 +21,7 @@ const val ACCOUNT_NUMBER_2 = "2222"
 internal class MoneyTransferSagaServiceTest {
 
     @Inject
+    @field: Default
     lateinit var moneyTransferSagaService: MoneyTransferSagaService
 
     companion object {
@@ -29,8 +31,8 @@ internal class MoneyTransferSagaServiceTest {
 
     @Before
     fun setup() {
-        InMemoryAccountRepository.accounts = HashMap()
-        InMemoryMoneyTransferRepository.moneyTransfers = HashMap()
+        InMemoryAccountRepository.accounts.clear()
+        InMemoryMoneyTransferRepository.moneyTransfers.clear()
     }
 
     @Test

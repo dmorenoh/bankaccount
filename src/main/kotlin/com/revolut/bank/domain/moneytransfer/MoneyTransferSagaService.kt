@@ -8,8 +8,9 @@ import com.revolut.common.CommandBus
 import io.quarkus.vertx.ConsumeEvent
 import mu.KotlinLogging
 import javax.enterprise.context.ApplicationScoped
+import javax.inject.Singleton
 
-@ApplicationScoped
+@Singleton
 class MoneyTransferSagaService(private val repository: MoneyTransferRepository,
                                private val commandBus: CommandBus) {
 
