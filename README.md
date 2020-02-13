@@ -25,7 +25,7 @@ Be aware that it’s not an _über-jar_ as the dependencies are copied into the 
 The application is now runnable using `java -jar target/bankaccount-1.0-SNAPSHOT-runner.jar`.
 
 ## Using the application
-Once using `./mvnw quarkus:dev` you can go to swagger-ui in order to check existing rest API specification
+Either running `bankaccount-1.0-SNAPSHOT-runner.jar` or after executing `./mvnw quarkus:dev` you can go to swagger-ui in order to check existing rest API specification
 ```
 http://0.0.0.0:8080/swagger-ui/
 ```
