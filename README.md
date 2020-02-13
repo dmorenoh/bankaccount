@@ -7,6 +7,7 @@ For testing purposes: RestAssured, Spock, JUnit5
 The solution has been faced considering DDD and Hexagonal Architecture. Also, the intention is to provide a non-blocking solution 
 by using command and event bus techniques.
 
+Saga pattern is being used in order to coordinate money transfer transaction.
 
 ## Running the application in dev mode
 
