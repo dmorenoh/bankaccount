@@ -8,6 +8,7 @@ The solution has been faced considering DDD and Hexagonal Architecture. Also, th
 by using command and event bus techniques.
 
 Saga pattern is being used in order to coordinate money transfer transaction.
+https://microservices.io/patterns/data/saga.html
 
 ## Running the application in dev mode
 
