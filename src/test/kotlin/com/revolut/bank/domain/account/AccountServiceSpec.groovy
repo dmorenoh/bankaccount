@@ -18,6 +18,18 @@ class AccountServiceSpec extends Specification {
 
     AccountService accountService = new AccountService(repository, eventBus)
 
+    def 'should create account'() {
+        when: "crate account handle"
+            accountService.handle(new CreateAccountCommand(ACCOUNT_NUMBER, SOME_MONEY))
+        then: "add new account"
+            1 * repository.add({
+                Account account ->
+                    account.accountNumber == ACCOUNT_NUMBER
+                    account.balance == SOME_MONEY
+            })
+            1 * eventBus.send(new AccountCreatedEvent(ACCOUNT_NUMBER, SOME_MONEY))
+    }
+
     def 'should fail when not enough balance'() {
         given: "an account with no money"
             repository.get(ACCOUNT_NUMBER) >> new Account(ACCOUNT_NUMBER, NO_MONEY)
