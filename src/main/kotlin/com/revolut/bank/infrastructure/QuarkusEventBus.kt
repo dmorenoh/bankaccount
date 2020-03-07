@@ -11,4 +11,5 @@ class QuarkusEventBus(private val eventBus: io.vertx.axle.core.eventbus.EventBus
         return eventBus.request<Void>(event::class.simpleName, event)
                 .thenApply { it.body() }
     }
+
 }
