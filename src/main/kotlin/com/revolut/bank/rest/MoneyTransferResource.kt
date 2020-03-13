@@ -10,6 +10,7 @@ import com.revolut.bank.domain.moneytransfer.MoneyTransferException
 import com.revolut.bank.domain.moneytransfer.MoneyTransferRepository
 import com.revolut.bank.domain.moneytransfer.RequestMoneyTransferCommand
 import com.revolut.bank.rest.message.MoneyTransferRequest
+import com.revolut.bank.rest.message.MoneyTransferResponse
 import java.util.*
 import javax.validation.Valid
 import javax.ws.rs.*
@@ -32,7 +33,9 @@ class MoneyTransferResource(val accountRepository: AccountRepository,
 
     @GET
     @Path("/all")
-    fun getTransactions(): List<MoneyTransfer> = moneyTransferRepository.getAll()
+    fun getTransactions(): List<MoneyTransferResponse> =
+            moneyTransferRepository.getAll()
+                    .map { moneyTransfer -> MoneyTransferResponse.from(moneyTransfer) }
 
 
     private fun getAccount(accountNumber: String): Account =

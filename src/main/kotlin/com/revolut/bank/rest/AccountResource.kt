@@ -7,6 +7,7 @@ import com.revolut.bank.domain.account.CreateAccountCommand
 import com.revolut.common.CommandBus
 import com.revolut.common.values.Money
 import com.revolut.bank.rest.message.AccountRequest
+import com.revolut.bank.rest.message.AccountResponse
 import java.util.*
 import javax.validation.Valid
 import javax.ws.rs.*
@@ -29,7 +30,9 @@ class AccountResource(val accountRepository: AccountRepository,
 
     @GET
     @Path("/all")
-    fun getAll(): List<Account> = accountRepository.getAll()
+    fun getAll(): List<AccountResponse> =
+            accountRepository.getAll()
+                    .map { account -> AccountResponse.from(account) }
 
 }
 

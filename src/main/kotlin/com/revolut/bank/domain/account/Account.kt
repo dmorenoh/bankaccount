@@ -3,7 +3,7 @@ package com.revolut.bank.domain.account
 import com.revolut.common.values.Money
 
 data class Account(val accountNumber: AccountNumber,
-                   var balance: Money) {
+                   private var balance: Money) {
     constructor(command: CreateAccountCommand) : this(command.accountNumber, command.currentBalance)
 
     fun deposit(amount: Money) {
@@ -15,4 +15,6 @@ data class Account(val accountNumber: AccountNumber,
             throw WithdrawException("non valid amount")
         balance = balance.subtract(amount)
     }
+
+    fun currentBalance():Money = balance
 }

@@ -103,7 +103,7 @@ class MoneyTransferResourceTest {
                 .`when`().post("/moneyTransfer")
                 .then().statusCode(204)
         Thread.sleep(500)
-        Assert.assertEquals(BigDecimal("20"), target.balance.value)
-        Assert.assertEquals(BigDecimal("0"), source.balance.value)
+        Assert.assertEquals(BigDecimal("20"), target.currentBalance().value)
+        Assert.assertEquals(BigDecimal("0"), source.currentBalance().value)
     }
 }

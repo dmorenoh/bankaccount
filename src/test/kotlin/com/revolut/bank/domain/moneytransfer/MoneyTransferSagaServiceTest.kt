@@ -55,9 +55,9 @@ internal class MoneyTransferSagaServiceTest {
 
         //Then money transfer canceled and accounts keep the initial balance
         Thread.sleep(100)
-        assertEquals(MoneyTransferStatus.CANCELED, requestedMoneyTransfer.status)
-        assertEquals(source.balance, ZERO_EUROS)
-        assertEquals(target.balance, TEN_EUROS)
+        assertEquals(MoneyTransferStatus.CANCELED, requestedMoneyTransfer.currentStatus())
+        assertEquals(source.currentBalance(), ZERO_EUROS)
+        assertEquals(target.currentBalance(), TEN_EUROS)
     }
 
     @Test
@@ -83,9 +83,9 @@ internal class MoneyTransferSagaServiceTest {
 
         //Then money transfer canceled and accounts keep the initial balance
         Thread.sleep(100)
-        assertEquals(MoneyTransferStatus.COMPLETED, requestedMoneyTransfer.status)
-        assertEquals(source.balance, ZERO_EUROS)
-        assertEquals(target.balance, TEN_EUROS)
+        assertEquals(MoneyTransferStatus.COMPLETED, requestedMoneyTransfer.currentStatus())
+        assertEquals(source.currentBalance(), ZERO_EUROS)
+        assertEquals(target.currentBalance(), TEN_EUROS)
     }
 
     @Test
@@ -114,12 +114,12 @@ internal class MoneyTransferSagaServiceTest {
 
         //Then money transfer canceled and accounts keep the initial balance
         Thread.sleep(500)
-        assertEquals(MoneyTransferStatus.COMPLETED, requestedMoneyTransfer.status)
-        assertEquals(source.balance, ZERO_EUROS)
-        assertEquals(target.balance, TEN_EUROS)
+        assertEquals(MoneyTransferStatus.COMPLETED, requestedMoneyTransfer.currentStatus())
+        assertEquals(source.currentBalance(), ZERO_EUROS)
+        assertEquals(target.currentBalance(), TEN_EUROS)
 
-        assertEquals(MoneyTransferStatus.CANCELED, requestedMoneyTransfer2.status)
-        assertEquals(source.balance, ZERO_EUROS)
-        assertEquals(target.balance, TEN_EUROS)
+        assertEquals(MoneyTransferStatus.CANCELED, requestedMoneyTransfer2.currentStatus())
+        assertEquals(source.currentBalance(), ZERO_EUROS)
+        assertEquals(target.currentBalance(), TEN_EUROS)
     }
 }

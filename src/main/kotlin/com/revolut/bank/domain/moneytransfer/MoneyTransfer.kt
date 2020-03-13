@@ -4,7 +4,11 @@ import com.revolut.bank.domain.account.Account
 import com.revolut.common.values.Money
 import java.util.*
 
-data class MoneyTransfer(val transferId: UUID, val from: Account, val to: Account, val amount: Money, var status: MoneyTransferStatus) {
+data class MoneyTransfer(val transferId: UUID,
+                         val from: Account,
+                         val to: Account,
+                         val amount: Money,
+                         private var status: MoneyTransferStatus) {
 
     fun sourceAccountNumber() = this.from.accountNumber
 
@@ -20,6 +24,12 @@ data class MoneyTransfer(val transferId: UUID, val from: Account, val to: Accoun
 
     companion object {
         fun newMoneyTransfer(command: RequestMoneyTransferCommand): MoneyTransfer =
-                MoneyTransfer(UUID.randomUUID(), command.source, command.target, command.amount, MoneyTransferStatus.REQUESTED)
+                MoneyTransfer(UUID.randomUUID(),
+                        command.source,
+                        command.target,
+                        command.amount,
+                        MoneyTransferStatus.REQUESTED)
     }
+
+    fun currentStatus(): MoneyTransferStatus = status
 }

@@ -4,7 +4,10 @@ import com.revolut.bank.domain.account.AccountNumber
 import com.revolut.common.Event
 import com.revolut.common.values.Money
 
-data class MoneyTransferRequestedEvent(val transferId: String, val from: AccountNumber, val to: AccountNumber, val amount: Money) : Event {
+data class MoneyTransferRequestedEvent(val transferId: String,
+                                       val from: AccountNumber,
+                                       val to: AccountNumber,
+                                       val amount: Money) : Event {
     companion object {
         fun of(moneyTransfer: MoneyTransfer): MoneyTransferRequestedEvent =
                 MoneyTransferRequestedEvent(moneyTransfer.transferId.toString(),

@@ -3,7 +3,9 @@ package com.revolut.common.values
 import java.math.BigDecimal
 import java.util.*
 
-data class Money(val value: BigDecimal, val currency: Currency) {
+data class Money(val value: BigDecimal,
+                 val currency: Currency) {
+
     operator fun compareTo(other: Money): Int {
         return this.value.compareTo(other.value)
     }
